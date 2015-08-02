@@ -8,17 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var Time: UILabel!
     
     @IBOutlet weak var startButton: UIButton!
+    
+ 
     
     var startTime = NSTimeInterval()
     var elapsedTime = NSTimeInterval()
     var startTimeDate = NSDate()
     var elapsedTimeDate = NSDate()
     var timer = NSTimer()
+    var x = NSDate()
     
     
     
@@ -48,8 +51,32 @@ class ViewController: UIViewController {
         let strFraction = fraction > 9 ? String(fraction):"0" + String(fraction)
         
         //concatenate minuets, seconds and milliseconds as assign it to the UILabel
-        Time.text = "\(strMinutes):\(strSeconds):\(strFraction)"
+       var labelString = "\(strMinutes):\(strSeconds):\(strFraction)"
+        Time.text = labelString
+        
     }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+    
+        return 5
+    }
+    
+    
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        var cell : UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("tesham") as? UITableViewCell
+        if(cell == nil)
+        {
+            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "tesham")
+        }
+        
+        cell!.textLabel!.text = "aaaa"
+        
+        return cell!
+    }
+
+    
     
     // END UPDATE TIME FUNCTION
     
@@ -101,6 +128,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         
         
     }
